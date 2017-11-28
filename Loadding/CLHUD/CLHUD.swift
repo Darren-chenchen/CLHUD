@@ -27,7 +27,7 @@ public class CLHUD: NSObject {
     }()
     lazy var coverView: UIView = {
         let cover = UIView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        cover.alpha = 0
+        cover.backgroundColor = UIColor.black
         return cover
     }()
     lazy var bottomView: UIView = {
@@ -86,6 +86,7 @@ public class CLHUD: NSObject {
             self.coverView.isHidden = true
             UIApplication.shared.keyWindow?.bringSubview(toFront: self.bottomView)
         } else {
+            self.coverView.alpha = 0.05
             self.coverView.isHidden = false
             UIApplication.shared.keyWindow?.bringSubview(toFront: self.coverView)
             UIApplication.shared.keyWindow?.bringSubview(toFront: self.bottomView)

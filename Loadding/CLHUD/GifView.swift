@@ -24,7 +24,7 @@ class GifView: UIView, CAAnimationDelegate {
      */
     func showGIFImageWithLocalName(name: String, completionClosure:@escaping (()->())) {
         self.completionClosure = completionClosure
-        self.gifurl = Bundle.main.url(forResource: name, withExtension: "gif")
+        self.gifurl = BundleUtil.getCurrentBundle().url(forResource: name, withExtension: "gif")
         self.createKeyFram()
     }
     
