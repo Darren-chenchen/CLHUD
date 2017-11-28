@@ -51,7 +51,7 @@ public class CLHUD: NSObject {
     }
     
     private func setGifWithImageName() {
-        self.gifView.showGIFImageWithLocalName(name: "Lodging", completionClosure: {
+        self.gifView.showGIFImageWithLocalName(name: "loading2", completionClosure: {
             // 做动画执行后的操作
         })
     }
