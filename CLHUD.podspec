@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CLHUD'
-  s.version = '1.0.2'
+  s.version = '1.0.3'
   s.license = 'MIT'
   s.summary = 'This is a loadding'
   s.homepage = 'https://github.com/Darren-chenchen/CLHUD'
@@ -11,6 +11,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Loadding/CLHUD/**/*.swift'
   s.resource_bundles = { 
-	'Loadding' => ['Loadding/CLHUD/images/**/*.png']
+	'Loadding' => ['Loadding/CLHUD/resource/**/*.gif']
   }
 end

@@ -55,7 +55,7 @@ public class CLHUD: NSObject {
             // 做动画执行后的操作
         })
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
