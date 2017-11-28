@@ -15,9 +15,7 @@ class BundleUtil {
                 
         let podBundle = Bundle(for: CLHUD.self)
         
-        let bundleURL = podBundle.url(forResource: "CLHUD", withExtension: "bundle")
-        
-        
+        let bundleURL = podBundle.url(forResource: "Loadding", withExtension: "bundle")
         
         if bundleURL != nil {
             let bundle = Bundle(url: bundleURL!)!
