@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CLHUD'
-  s.version = '1.0.6'
+  s.version = '1.0.7'
   s.license = 'MIT'
   s.summary = 'This is a loadding'
   s.homepage = 'https://github.com/Darren-chenchen/CLHUD'

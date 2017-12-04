@@ -26,7 +26,8 @@ public class CLHUD: NSObject {
         return img
     }()
     lazy var coverView: UIView = {
-        let cover = UIView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        let cover = UIView()
+        cover.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         cover.backgroundColor = UIColor.black
         return cover
     }()
@@ -38,16 +39,19 @@ public class CLHUD: NSObject {
     override init() {
         super.init()
         
-        self.bottomView.alpha = 0.8
-        self.bottomView.clipsToBounds = true
-        self.bottomView.backgroundColor = UIColor.clear
-        self.bottomView.layer.cornerRadius = 10
-        self.bottomView.layer.masksToBounds = true
+        DispatchQueue.main.async {
+            self.bottomView.alpha = 0.8
+            self.bottomView.clipsToBounds = true
+            self.bottomView.backgroundColor = UIColor.clear
+            self.bottomView.layer.cornerRadius = 10
+            self.bottomView.layer.masksToBounds = true
+            
+            // 初始化所有的view，app启动期间view的结构只初始化一次
+            self.bottomView.addSubview(self.gifView)
+            UIApplication.shared.keyWindow?.addSubview(self.coverView)
+            UIApplication.shared.keyWindow?.addSubview(self.bottomView)
+        }
         
-        // 初始化所有的view，app启动期间view的结构只初始化一次
-        self.bottomView.addSubview(self.gifView)
-        UIApplication.shared.keyWindow?.addSubview(self.coverView)
-        UIApplication.shared.keyWindow?.addSubview(self.bottomView)
     }
     
     private func setGifWithImageName() {
@@ -61,16 +65,22 @@ public class CLHUD: NSObject {
     
     // 展示
     public static func show(dismissTimer: CGFloat? = nil) {
-        CLHUD.share.begin(dismissTimer: dismissTimer, coverHidden: true)
+        DispatchQueue.main.async {
+            CLHUD.share.begin(dismissTimer: dismissTimer, coverHidden: true)
+        }
     }
     
     // 消失
     public static func dismiss() {
-        CLHUD.share.hiddenHud()
+        DispatchQueue.main.async {
+            CLHUD.share.hiddenHud()
+        }
     }
     // 展示遮罩层
     public static func showWithOverlay(dismissTimer: CGFloat? = nil) {
-        CLHUD.share.begin(dismissTimer: dismissTimer, coverHidden: false)
+        DispatchQueue.main.async {
+            CLHUD.share.begin(dismissTimer: dismissTimer, coverHidden: false)
+        }
     }
     
     func begin(dismissTimer: CGFloat? = nil,coverHidden: Bool) {
@@ -109,7 +119,7 @@ public class CLHUD: NSObject {
     // 动画出现
     private func fadeIn() {
         self.setGifWithImageName()
-
+        
         UIView.animate(withDuration: TimeInterval(self.fadeDuration), animations: {
             self.bottomView.alpha = 1
         }) { (finish) in
